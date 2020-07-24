@@ -11,7 +11,7 @@ namespace SubNineAPI.Entities
         [Required]
         public string ShirtColor { get; set; }
 
-        public long CityId { get; set; }
+        //public long CityId { get; set; }
         //public City City { get; set; }
     }
 }
