@@ -39,6 +39,19 @@ namespace SubNineAPI.Entities
                     Gender = "M"
                 }
             );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = 1,
+                    Name = "running"
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "jumping"
+                }
+            );
             
             modelBuilder.Entity<City>().HasData(
                 new City
@@ -76,6 +89,76 @@ namespace SubNineAPI.Entities
                     Id = 3,
                     Name = "AK Zagreb",
                     ShirtColor = "blue/white"
+                }
+            );
+
+            modelBuilder.Entity<Country>().HasData(
+                new Country
+                {
+                    Id = 1,
+                    Name = "Hrvatska"
+                },
+                new Country
+                {
+                    Id = 2,
+                    Name = "Bosna i Hercegovina"
+                }
+            );
+
+            modelBuilder.Entity<Discipline>().HasData(
+                new Discipline
+                {
+                    Id = 1,
+                    Name = "100m"
+                },
+                new Discipline
+                {
+                    Id = 2,
+                    Name = "long jump"
+                }
+            );
+
+            modelBuilder.Entity<Event>().HasData(
+                new Event
+                {
+                    Id = 1,
+                    Name = "Preliminary round"
+                },
+                new Event
+                {
+                    Id = 2,
+                    Name = "Qualifications"
+                },
+                new Event
+                {
+                    Id = 3,
+                    Name = "Heats"
+                }
+            );
+
+            modelBuilder.Entity<Participation>().HasData(
+                new Participation
+                {
+                    Id = 1,
+                    Result = 10.97
+                },
+                new Participation
+                {
+                    Id = 2,
+                    Result = 22.22
+                }
+            );
+
+            modelBuilder.Entity<RangList>().HasData(
+                new RangList
+                {
+                    Id = 1,
+                    Place = 4
+                },
+                new RangList
+                {
+                    Id = 2,
+                    Place = 2
                 }
             );
         }
