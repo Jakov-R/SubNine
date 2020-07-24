@@ -19,7 +19,9 @@ namespace SubNineAPI.Entities
         [Required]
         public string Gender { get; set; }
 
-        //public long ClubId { get; set; }
-        //public long CountryId { get; set; }
+        public long ClubId { get; set; }
+        //public Club Club { get; set; }
+        public long CountryId { get; set; }
+        //public Country Country { get; set; }
     }
 }

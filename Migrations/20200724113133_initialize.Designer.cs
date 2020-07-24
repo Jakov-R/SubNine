@@ -10,8 +10,8 @@ using SubNineAPI.Entities;
 namespace SubNineAPI.Migrations
 {
     [DbContext(typeof(SubNineContext))]
-    [Migration("20200723190804_initialization")]
-    partial class initialization
+    [Migration("20200724113133_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace SubNineAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClubId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTimeOffset>("DateOfBirth")
                         .HasColumnType("datetimeoffset");
@@ -53,6 +56,7 @@ namespace SubNineAPI.Migrations
                         new
                         {
                             Id = 1L,
+                            ClubId = 0L,
                             DateOfBirth = new DateTimeOffset(new DateTime(1998, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             FirstName = "Jakov",
                             Gender = "M",
@@ -61,10 +65,39 @@ namespace SubNineAPI.Migrations
                         new
                         {
                             Id = 2L,
+                            ClubId = 0L,
                             DateOfBirth = new DateTimeOffset(new DateTime(1999, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             FirstName = "Martin",
                             Gender = "M",
                             LastName = "Poje"
+                        });
+                });
+
+            modelBuilder.Entity("SubNineAPI.Entities.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "running"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "jumping"
                         });
                 });
 
@@ -158,6 +191,18 @@ namespace SubNineAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Hrvatska"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Bosna i Hercegovina"
+                        });
                 });
 
             modelBuilder.Entity("SubNineAPI.Entities.Discipline", b =>
@@ -175,6 +220,18 @@ namespace SubNineAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Disciplines");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "100m"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "long jump"
+                        });
                 });
 
             modelBuilder.Entity("SubNineAPI.Entities.Event", b =>
@@ -192,6 +249,50 @@ namespace SubNineAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Preliminary round"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Qualifications"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Name = "Heats"
+                        });
+                });
+
+            modelBuilder.Entity("SubNineAPI.Entities.Participation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Result")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Participations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Result = 10.970000000000001
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Result = 22.219999999999999
+                        });
                 });
 
             modelBuilder.Entity("SubNineAPI.Entities.RangList", b =>
@@ -207,6 +308,18 @@ namespace SubNineAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RangLists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Place = 4
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Place = 2
+                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -33,7 +33,7 @@ namespace SubNineAPI
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddDbContext<SubNineContext>(options => options.UseSqlServer("Server=DESKTOP-VIQHUMA;Database=UrlShortener;Trusted_Connection=true;"));
+            services.AddDbContext<SubNineContext>(options => options.UseSqlServer("Server=DESKTOP-VIQHUMA;Database=SubNine;Trusted_Connection=true;"));
             
             services.AddScoped<ISubNineRepository<Athlete>, AthleteRepository>();
             services.AddScoped<ISubNineRepository<City>, CityRepository>();
