@@ -10,7 +10,7 @@ using SubNineAPI.Entities;
 namespace SubNineAPI.Migrations
 {
     [DbContext(typeof(SubNineContext))]
-    [Migration("20200724113133_initialize")]
+    [Migration("20200724134647_initialize")]
     partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,6 @@ namespace SubNineAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("ClubId")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTimeOffset>("DateOfBirth")
                         .HasColumnType("datetimeoffset");
@@ -56,7 +53,6 @@ namespace SubNineAPI.Migrations
                         new
                         {
                             Id = 1L,
-                            ClubId = 0L,
                             DateOfBirth = new DateTimeOffset(new DateTime(1998, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             FirstName = "Jakov",
                             Gender = "M",
@@ -65,7 +61,6 @@ namespace SubNineAPI.Migrations
                         new
                         {
                             Id = 2L,
-                            ClubId = 0L,
                             DateOfBirth = new DateTimeOffset(new DateTime(1999, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             FirstName = "Martin",
                             Gender = "M",

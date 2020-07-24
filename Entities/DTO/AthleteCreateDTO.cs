@@ -13,8 +13,6 @@ namespace SubNineAPI.Entities.DTO
         
         public string Gender { get; set; }
 
-        public int YearsOld { get; set; }
-
         //public long ClubId { get; set; }
         //public long CountryId { get; set; }
     }

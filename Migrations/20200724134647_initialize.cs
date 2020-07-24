@@ -16,8 +16,7 @@ namespace SubNineAPI.Migrations
                     FirstName = table.Column<string>(maxLength: 50, nullable: false),
                     LastName = table.Column<string>(maxLength: 50, nullable: false),
                     DateOfBirth = table.Column<DateTimeOffset>(nullable: false),
-                    Gender = table.Column<string>(nullable: false),
-                    ClubId = table.Column<long>(nullable: false)
+                    Gender = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,11 +130,11 @@ namespace SubNineAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Athletes",
-                columns: new[] { "Id", "ClubId", "DateOfBirth", "FirstName", "Gender", "LastName" },
+                columns: new[] { "Id", "DateOfBirth", "FirstName", "Gender", "LastName" },
                 values: new object[,]
                 {
-                    { 1L, 0L, new DateTimeOffset(new DateTime(1998, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Jakov", "M", "Raguž" },
-                    { 2L, 0L, new DateTimeOffset(new DateTime(1999, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Martin", "M", "Poje" }
+                    { 1L, new DateTimeOffset(new DateTime(1998, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Jakov", "M", "Raguž" },
+                    { 2L, new DateTimeOffset(new DateTime(1999, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Martin", "M", "Poje" }
                 });
 
             migrationBuilder.InsertData(
