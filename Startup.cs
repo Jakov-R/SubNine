@@ -41,7 +41,7 @@ namespace SubNineAPI
             services.AddScoped<ISubNineRepository<Club>, ClubRepository>();
             services.AddScoped<ISubNineRepository<Discipline>, DisciplineRepository>();
             services.AddScoped<ISubNineRepository<Event>, EventRepository>();
-            //services.AddScoped<ISubNineRepository<Participation>, ParticipationRepository>();
+            services.AddScoped<ISubNineRepository<Participation>, ParticipationRepository>();
             services.AddScoped<ISubNineRepository<RangList>, RangListRepository>();
             services.AddScoped<ISubNineRepository<Category>, CategoryRepository>();
         }

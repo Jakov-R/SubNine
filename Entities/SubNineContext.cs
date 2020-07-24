@@ -15,7 +15,7 @@ namespace SubNineAPI.Entities
         public DbSet<Country> Countries { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }
         public DbSet<Event> Events { get; set; }
-        //public DbSet<Participation> Participations { get; set; }
+        public DbSet<Participation> Participations { get; set; }
         public DbSet<RangList> RangLists { get; set; }
         public DbSet<Category> Categories { get; set; }
 
