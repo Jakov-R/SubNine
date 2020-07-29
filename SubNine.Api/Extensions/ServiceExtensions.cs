@@ -8,7 +8,6 @@ using SubNine.Core.repositories.Disciplines;
 using SubNine.Core.repositories.Events;
 using SubNine.Core.repositories.Participations;
 using SubNine.Core.repositories.RangLists;
-using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
 
 namespace SubNine.Api.Extensions
@@ -17,15 +16,15 @@ namespace SubNine.Api.Extensions
     {
         public static void RegisterScopedServices(this IServiceCollection services)
         {
-            services.AddScoped<IRepository<Athlete>, AthleteRepository>();
-            services.AddScoped<IRepository<City>, CityRepository>();
-            services.AddScoped<IRepository<Country>, CountryRepository>();
-            services.AddScoped<IRepository<Club>, ClubRepository>();
-            services.AddScoped<IRepository<Discipline>, DisciplineRepository>();
-            services.AddScoped<IRepository<Event>, EventRepository>();
-            services.AddScoped<IRepository<Participation>, ParticipationRepository>();
-            services.AddScoped<IRepository<RangList>, RangListRepository>();
-            services.AddScoped<IRepository<Category>, CategoryRepository>();
+            services.AddScoped<IAthleteRepository, AthleteRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IClubRepository, ClubRepository>();
+            services.AddScoped<IDisciplineRepository, DisciplineRepository>();
+            services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IParticipationRepository, ParticipationRepository>();
+            services.AddScoped<IRangListRepository, RangListRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
     }
 }

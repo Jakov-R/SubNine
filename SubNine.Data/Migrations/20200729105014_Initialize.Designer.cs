@@ -10,7 +10,7 @@ using SubNine.Data.Database;
 namespace SubNine.Data.Migrations
 {
     [DbContext(typeof(SubNineContext))]
-    [Migration("20200727185832_Initialize")]
+    [Migration("20200729105014_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,12 @@ namespace SubNine.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CountryId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTimeOffset>("DateOfBirth")
                         .HasColumnType("datetimeoffset");
@@ -47,12 +53,18 @@ namespace SubNine.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClubId");
+
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Athletes");
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
+                            ClubId = 1L,
+                            CountryId = 1L,
                             DateOfBirth = new DateTimeOffset(new DateTime(1998, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             FirstName = "Jakov",
                             Gender = "M",
@@ -61,6 +73,8 @@ namespace SubNine.Data.Migrations
                         new
                         {
                             Id = 2L,
+                            ClubId = 2L,
+                            CountryId = 1L,
                             DateOfBirth = new DateTimeOffset(new DateTime(1999, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             FirstName = "Martin",
                             Gender = "M",
@@ -103,6 +117,9 @@ namespace SubNine.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("CountryId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -110,22 +127,27 @@ namespace SubNine.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Cities");
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
+                            CountryId = 1L,
                             Name = "Zagreb"
                         },
                         new
                         {
                             Id = 2L,
+                            CountryId = 1L,
                             Name = "Split"
                         },
                         new
                         {
                             Id = 3L,
+                            CountryId = 2L,
                             Name = "Mostar"
                         });
                 });
@@ -136,6 +158,9 @@ namespace SubNine.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -148,24 +173,29 @@ namespace SubNine.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.ToTable("Clubs");
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
+                            CityId = 1L,
                             Name = "AK Agram",
                             ShirtColor = "black"
                         },
                         new
                         {
                             Id = 2L,
+                            CityId = 1L,
                             Name = "AK Dinamo-Zrinjevac",
                             ShirtColor = "blue"
                         },
                         new
                         {
                             Id = 3L,
+                            CityId = 1L,
                             Name = "AK Zagreb",
                             ShirtColor = "blue/white"
                         });
@@ -207,6 +237,9 @@ namespace SubNine.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -214,17 +247,21 @@ namespace SubNine.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Disciplines");
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
+                            CategoryId = 1L,
                             Name = "100m"
                         },
                         new
                         {
                             Id = 2L,
+                            CategoryId = 2L,
                             Name = "long jump"
                         });
                 });
@@ -270,10 +307,25 @@ namespace SubNine.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("AthleteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DisciplineId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("EventId")
+                        .HasColumnType("bigint");
+
                     b.Property<double>("Result")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AthleteId");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.HasIndex("EventId");
 
                     b.ToTable("Participations");
 
@@ -281,12 +333,18 @@ namespace SubNine.Data.Migrations
                         new
                         {
                             Id = 1L,
+                            AthleteId = 1L,
+                            DisciplineId = 1L,
+                            EventId = 3L,
                             Result = 10.970000000000001
                         },
                         new
                         {
                             Id = 2L,
-                            Result = 22.219999999999999
+                            AthleteId = 1L,
+                            DisciplineId = 2L,
+                            EventId = 3L,
+                            Result = 6.1100000000000003
                         });
                 });
 
@@ -297,10 +355,20 @@ namespace SubNine.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("AthleteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("Place")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AthleteId");
+
+                    b.HasIndex("EventId");
 
                     b.ToTable("RangLists");
 
@@ -308,13 +376,91 @@ namespace SubNine.Data.Migrations
                         new
                         {
                             Id = 1L,
+                            AthleteId = 1L,
+                            EventId = 3L,
                             Place = 4
                         },
                         new
                         {
                             Id = 2L,
+                            AthleteId = 1L,
+                            EventId = 3L,
                             Place = 2
                         });
+                });
+
+            modelBuilder.Entity("SubNine.Data.Entities.Athlete", b =>
+                {
+                    b.HasOne("SubNine.Data.Entities.Club", "Club")
+                        .WithMany("Athletes")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SubNine.Data.Entities.Country", "Country")
+                        .WithMany("Athletes")
+                        .HasForeignKey("CountryId");
+                });
+
+            modelBuilder.Entity("SubNine.Data.Entities.City", b =>
+                {
+                    b.HasOne("SubNine.Data.Entities.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SubNine.Data.Entities.Club", b =>
+                {
+                    b.HasOne("SubNine.Data.Entities.City", "City")
+                        .WithMany("Clubs")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SubNine.Data.Entities.Discipline", b =>
+                {
+                    b.HasOne("SubNine.Data.Entities.Category", "Category")
+                        .WithMany("Disciplines")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SubNine.Data.Entities.Participation", b =>
+                {
+                    b.HasOne("SubNine.Data.Entities.Athlete", "Athlete")
+                        .WithMany("Participations")
+                        .HasForeignKey("AthleteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SubNine.Data.Entities.Discipline", "Discipline")
+                        .WithMany("Participtions")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SubNine.Data.Entities.Event", "Event")
+                        .WithMany("Participations")
+                        .HasForeignKey("EventId");
+                });
+
+            modelBuilder.Entity("SubNine.Data.Entities.RangList", b =>
+                {
+                    b.HasOne("SubNine.Data.Entities.Athlete", "Athlete")
+                        .WithMany("RangLists")
+                        .HasForeignKey("AthleteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SubNine.Data.Entities.Event", "Event")
+                        .WithMany("RangLists")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

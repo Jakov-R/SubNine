@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SubNine.Data.Entities
@@ -11,7 +12,9 @@ namespace SubNine.Data.Entities
         [Required]
         public string ShirtColor { get; set; }
 
-        //public long CityId { get; set; }
-        //public City City { get; set; }
+        public ICollection<Athlete> Athletes { get; set; }
+
+        public long CityId { get; set; }
+        public City City { get; set; }
     }
 }

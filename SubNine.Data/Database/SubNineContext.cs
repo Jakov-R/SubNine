@@ -21,7 +21,65 @@ namespace SubNine.Data.Database
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {            
+            modelBuilder.Entity<Country>().HasData(
+                new Country
+                {
+                    Id = 1,
+                    Name = "Hrvatska"
+                },
+                new Country
+                {
+                    Id = 2,
+                    Name = "Bosna i Hercegovina"
+                }
+            );
+
+             modelBuilder.Entity<City>().HasData(
+                new City
+                {
+                    Id = 1,
+                    Name = "Zagreb",
+                    CountryId = 1
+                },
+                new City
+                {
+                    Id = 2,
+                    Name = "Split",
+                    CountryId = 1
+                },
+                new City
+                {
+                    Id = 3,
+                    Name = "Mostar",
+                    CountryId = 2
+                }
+            );
+
+            modelBuilder.Entity<Club>().HasData(
+                new Club
+                {
+                    Id = 1,
+                    Name = "AK Agram",
+                    ShirtColor = "black",
+                    CityId = 1
+                },
+                new Club
+                {
+                    Id = 2,
+                    Name = "AK Dinamo-Zrinjevac",
+                    ShirtColor = "blue",
+                    CityId = 1
+                },
+                new Club
+                {
+                    Id = 3,
+                    Name = "AK Zagreb",
+                    ShirtColor = "blue/white",
+                    CityId = 1
+                }
+            );
+
             modelBuilder.Entity<Athlete>().HasData(
                 new Athlete
                 {
@@ -29,7 +87,9 @@ namespace SubNine.Data.Database
                     FirstName = "Jakov",
                     LastName = "Raguž",
                     DateOfBirth = new DateTime(1998, 8, 21),
-                    Gender = "M"
+                    Gender = "M",
+                    ClubId = 1,
+                    CountryId = 1
                 },
                 new Athlete
                 {
@@ -37,7 +97,9 @@ namespace SubNine.Data.Database
                     FirstName = "Martin",
                     LastName = "Poje",
                     DateOfBirth = new DateTime(1999, 5, 17),
-                    Gender = "M"
+                    Gender = "M",
+                    ClubId = 2,
+                    CountryId = 1
                 }
             );
 
@@ -53,69 +115,19 @@ namespace SubNine.Data.Database
                     Name = "jumping"
                 }
             );
-            
-            modelBuilder.Entity<City>().HasData(
-                new City
-                {
-                    Id = 1,
-                    Name = "Zagreb"
-                },
-                new City
-                {
-                    Id = 2,
-                    Name = "Split"
-                },
-                new City
-                {
-                    Id = 3,
-                    Name = "Mostar"
-                }
-            );
-            
-            modelBuilder.Entity<Club>().HasData(
-                new Club
-                {
-                    Id = 1,
-                    Name = "AK Agram",
-                    ShirtColor = "black"
-                },
-                new Club
-                {
-                    Id = 2,
-                    Name = "AK Dinamo-Zrinjevac",
-                    ShirtColor = "blue"
-                },
-                new Club
-                {
-                    Id = 3,
-                    Name = "AK Zagreb",
-                    ShirtColor = "blue/white"
-                }
-            );
-
-            modelBuilder.Entity<Country>().HasData(
-                new Country
-                {
-                    Id = 1,
-                    Name = "Hrvatska"
-                },
-                new Country
-                {
-                    Id = 2,
-                    Name = "Bosna i Hercegovina"
-                }
-            );
 
             modelBuilder.Entity<Discipline>().HasData(
                 new Discipline
                 {
                     Id = 1,
-                    Name = "100m"
+                    Name = "100m",
+                    CategoryId = 1
                 },
                 new Discipline
                 {
                     Id = 2,
-                    Name = "long jump"
+                    Name = "long jump",
+                    CategoryId = 2
                 }
             );
 
@@ -141,12 +153,18 @@ namespace SubNine.Data.Database
                 new Participation
                 {
                     Id = 1,
+                    AthleteId = 1,
+                    DisciplineId = 1,
+                    EventId = 3,
                     Result = 10.97
                 },
                 new Participation
                 {
                     Id = 2,
-                    Result = 22.22
+                    AthleteId = 1,
+                    DisciplineId = 2,
+                    EventId = 3,
+                    Result = 6.11
                 }
             );
 
@@ -154,11 +172,15 @@ namespace SubNine.Data.Database
                 new RangList
                 {
                     Id = 1,
+                    AthleteId = 1,
+                    EventId = 3,
                     Place = 4
                 },
                 new RangList
                 {
                     Id = 2,
+                    AthleteId = 1,
+                    EventId = 3,
                     Place = 2
                 }
             );

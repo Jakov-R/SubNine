@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.Countries;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/countries")]
     public class CountryController : AppController
     {
-        private readonly IRepository<Country> subNineRepository;
+        private readonly ICountryRepository subNineRepository;
         private readonly IMapper mapper;
 
         public CountryController(
-            IRepository<Country> subNineRepository,
+            ICountryRepository subNineRepository,
             IMapper mapper
         )
         {

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Api.Extensions;
-using SubNine.Core.Repositories;
-using SubNine.Data.Database;
+using SubNine.Core.repositories.Athletes;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -13,11 +11,11 @@ namespace SubNine.Api.Controllers
     [Route("api/athletes")]
     public class AthleteController : AppController
     {
-        private readonly IRepository<Athlete> subNineRepository;
+        private readonly IAthleteRepository subNineRepository;
         private readonly IMapper mapper;
 
         public AthleteController(
-            IRepository<Athlete> subNineRepository,
+            IAthleteRepository subNineRepository,
             IMapper mapper
         )
         {

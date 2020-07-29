@@ -7,5 +7,7 @@ namespace SubNine.Data.Models
         public string Name { get; set; }
 
         public string Label { get; set; }
+
+        public long CountryId { get; set; }
     }
 }

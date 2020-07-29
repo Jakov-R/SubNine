@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.Disciplines;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/disciplines")]
     public class DisciplineController : AppController
     {
-        private readonly IRepository<Discipline> subNineRepository;
+        private readonly IDisciplineRepository subNineRepository;
         private readonly IMapper mapper;
 
         public DisciplineController(
-            IRepository<Discipline> subNineRepository,
+            IDisciplineRepository subNineRepository,
             IMapper mapper
         )
         {

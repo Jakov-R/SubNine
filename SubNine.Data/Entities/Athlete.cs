@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SubNine.Data.Entities
 {
@@ -19,9 +21,13 @@ namespace SubNine.Data.Entities
         [Required]
         public string Gender { get; set; }
 
-        //public long ClubId { get; set; }
-        //public Club Club { get; set; }
-        //public long CountryId { get; set; }
-        //public Country Country { get; set; }
+        public long ClubId { get; set; }
+        public Club Club { get; set; }
+        
+        public long? CountryId { get; set; }
+        public Country Country { get; set; }
+
+        public ICollection<Participation> Participations { get; set; }
+        public ICollection<RangList> RangLists { get; set; }
     }
 }

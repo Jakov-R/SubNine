@@ -13,5 +13,9 @@ namespace SubNine.Data.Models
         public int YearsOld { get; set; }
 
         public string Gender { get; set; }
+
+        public long ClubId { get; set; }
+
+        public long CountryId { get; set; }
     }
 }

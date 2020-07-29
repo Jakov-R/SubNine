@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.Participations;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/participations")]
     public class ParticipationController : AppController
     {
-        private readonly IRepository<Participation> subNineRepository;
+        private readonly IParticipationRepository subNineRepository;
         private readonly IMapper mapper;
 
         public ParticipationController(
-            IRepository<Participation> subNineRepository,
+            IParticipationRepository subNineRepository,
             IMapper mapper
         )
         {

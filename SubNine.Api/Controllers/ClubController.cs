@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.Clubs;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/clubs")]
     public class ClubController : AppController
     {
-        private readonly IRepository<Club> subNineRepository;
+        private readonly IClubRepository subNineRepository;
         private readonly IMapper mapper;
 
         public ClubController(
-            IRepository<Club> subNineRepository,
+            IClubRepository subNineRepository,
             IMapper mapper
         )
         {

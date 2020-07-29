@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.Categories;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/categories")]
     public class CategoryController : AppController
     {
-        private readonly IRepository<Category> subNineRepository;
+        private readonly ICategoryRepository subNineRepository;
         private readonly IMapper mapper;
 
         public CategoryController(
-            IRepository<Category> subNineRepository,
+            ICategoryRepository subNineRepository,
             IMapper mapper
         )
         {

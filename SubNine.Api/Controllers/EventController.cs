@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.Events;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/events")]
     public class EventController : AppController
     {
-        private readonly IRepository<Event> subNineRepository;
+        private readonly IEventRepository subNineRepository;
         private readonly IMapper mapper;
 
         public EventController(
-            IRepository<Event> subNineRepository,
+            IEventRepository subNineRepository,
             IMapper mapper
         )
         {

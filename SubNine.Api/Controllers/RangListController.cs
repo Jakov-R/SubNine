@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Core.repositories.RangLists;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -12,11 +13,11 @@ namespace SubNine.Api.Controllers
     [Route("api/rangLists")]
     public class RangListController : AppController
     {
-        private readonly IRepository<RangList> subNineRepository;
+        private readonly IRangListRepository subNineRepository;
         private readonly IMapper mapper;
 
         public RangListController(
-            IRepository<RangList> subNineRepository,
+            IRangListRepository subNineRepository,
             IMapper mapper
         )
         {

@@ -13,7 +13,7 @@ namespace SubNine.Data.Models
         
         public string Gender { get; set; }
 
-        //public long ClubId { get; set; }
-        //public long CountryId { get; set; }
+        public long ClubId { get; set; }
+        public long CountryId { get; set; }
     }
 }
