@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Events;
-using SubNine.Core.Repositories;
-using SubNine.Data.Database;
+using SubNine.Core.Repositories.Events;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -11,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/events")]
-    public class EventController : AppController
+    public class EventController : BaseController
     {
         private readonly IEventRepository subNineRepository;
         private readonly IMapper mapper;
@@ -26,30 +24,30 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<EventDetailDTO>> GetEvents([FromQuery] string search)
+        public ActionResult<IEnumerable<EventDetailMore>> GetEvents([FromQuery] string search)
         {
             var eventt = this.subNineRepository.GetAll(search);
-            var eventtDTO = this.mapper.Map<IEnumerable<EventDetailDTO>>(eventt);
+            var eventtDTO = this.mapper.Map<IEnumerable<EventDetailMore>>(eventt);
 
             return Ok(eventtDTO);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<EventDetailDTO> GetEvent(long id)
+        public ActionResult<EventDetailMore> GetEvent(long id)
         {
             var eventt = this.subNineRepository.GetOne(id);
-            var eventtDto = this.mapper.Map<EventDetailDTO>(eventt);
+            var eventtDto = this.mapper.Map<EventDetailMore>(eventt);
 
             return Ok(eventtDto);
         }
 
         [HttpPost]
-        public ActionResult<EventDetailDTO> CreateEvent(EventCreateDTO eventtDTO)
+        public ActionResult<EventDetailMore> CreateEvent(EventCreate eventtDTO)
         {
             var eventt = this.mapper.Map<Event>(eventtDTO);
             eventt = this.subNineRepository.Create(eventt);
 
-            return this.mapper.Map<EventDetailDTO>(eventt);
+            return this.mapper.Map<EventDetailMore>(eventt);
         }
 
         [HttpDelete("{id}")]
@@ -59,10 +57,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<EventDetailDTO> UpdateEvent(long id, [FromBody] Event updatedEvent)
+        public ActionResult<EventDetailMore> UpdateEvent(long id, [FromBody] Event updatedEvent)
         {
             var eventt = this.subNineRepository.Update(id, updatedEvent);
-            var eventtResult = this.mapper.Map<EventDetailDTO>(eventt);
+            var eventtResult = this.mapper.Map<EventDetailMore>(eventt);
 
             return eventtResult;
         }

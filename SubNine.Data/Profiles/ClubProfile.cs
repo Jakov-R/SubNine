@@ -9,13 +9,15 @@ namespace SubNine.Data.Profiles
     {
         public ClubProfile()
         {
-            CreateMap<Club, ClubDetailDTO>()
+            CreateMap<Club, ClubDetail>();
+            
+            CreateMap<Club, ClubDetailMore>()
             .ForMember(
                 dest => dest.ShirtColor,
                 opt => opt.MapFrom(src => "Boja dresa: " + src.ShirtColor)
             );
 
-            CreateMap<ClubCreateDTO, Club>()
+            CreateMap<ClubCreate, Club>()
             .ForMember(
                 dest => dest.Name,
                 opt => opt.MapFrom(src => src.Name)

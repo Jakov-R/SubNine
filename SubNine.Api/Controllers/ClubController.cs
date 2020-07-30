@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Clubs;
-using SubNine.Core.Repositories;
-using SubNine.Data.Database;
+using SubNine.Core.Repositories.Clubs;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -11,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/clubs")]
-    public class ClubController : AppController
+    public class ClubController : BaseController
     {
         private readonly IClubRepository subNineRepository;
         private readonly IMapper mapper;
@@ -26,30 +24,30 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ClubDetailDTO>> GetClubs([FromQuery] string search)
+        public ActionResult<IEnumerable<ClubDetailMore>> GetClubs([FromQuery] string search)
         {
             var club = this.subNineRepository.GetAll(search);
-            var clubDTO = this.mapper.Map<IEnumerable<ClubDetailDTO>>(club);
+            var clubDTO = this.mapper.Map<IEnumerable<ClubDetailMore>>(club);
 
             return Ok(clubDTO);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ClubDetailDTO> GetClub(long id)
+        public ActionResult<ClubDetailMore> GetClub(long id)
         {
             var club = this.subNineRepository.GetOne(id);
-            var clubDto = this.mapper.Map<ClubDetailDTO>(club);
+            var clubDto = this.mapper.Map<ClubDetailMore>(club);
 
             return Ok(clubDto);
         }
 
         [HttpPost]
-        public ActionResult<ClubDetailDTO> CreateClub(ClubCreateDTO clubDTO)
+        public ActionResult<ClubDetailMore> CreateClub(ClubCreate clubDTO)
         {
             var club = this.mapper.Map<Club>(clubDTO);
             club = this.subNineRepository.Create(club);
 
-            return this.mapper.Map<ClubDetailDTO>(club);
+            return this.mapper.Map<ClubDetailMore>(club);
         }
 
         [HttpDelete("{id}")]
@@ -59,10 +57,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<ClubDetailDTO> UpdateClub(long id, [FromBody] Club updatedClub)
+        public ActionResult<ClubDetailMore> UpdateClub(long id, [FromBody] Club updatedClub)
         {
             var club = this.subNineRepository.Update(id, updatedClub);
-            var clubResult = this.mapper.Map<ClubDetailDTO>(club);
+            var clubResult = this.mapper.Map<ClubDetailMore>(club);
 
             return clubResult;
         }

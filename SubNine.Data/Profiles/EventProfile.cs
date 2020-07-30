@@ -9,17 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public EventProfile()
         {
-            CreateMap<Event, EventDetailDTO>()
-            .ForMember(
-                dest => dest.Name,
-                opt => opt.MapFrom(src => src.Name)
-            );
-
-            CreateMap<EventCreateDTO, Event>()
-            .ForMember(
-                dest => dest.Name,
-                opt => opt.MapFrom(src => src.Name)
-            );
+            CreateMap<Event, EventDetail>();
+            CreateMap<Event, EventDetailMore>();
+            CreateMap<EventCreate, Event>();
         }
     }
 }

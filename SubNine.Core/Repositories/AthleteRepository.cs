@@ -24,17 +24,22 @@ namespace SubNine.Core.Repositories.Athletes
             if (!string.IsNullOrEmpty(search))
             {
                 /* simple search */
-                query = query.Where(
-                    p => p.FirstName.Contains(search) || p.LastName.Contains(search)
-                );
+                query = query
+                .Where(p => p.FirstName.Contains(search) || p.LastName.Contains(search));
             }
-
+            query = query
+            .Include(a => a.Club)
+            .Include(a => a.Country);
             return query.ToList();
         }
 
         public Athlete GetOne(long id)
         {
-            return this.context.Athletes.Where(a => a.Id == id).Single();
+            return this.context.Athletes
+            .Where(a => a.Id == id)
+            .Include(a => a.Club)
+            .Include(a => a.Country)
+            .Single();
         }
 
         public IEnumerable<Athlete> GetMultiple(IEnumerable<long> ids)

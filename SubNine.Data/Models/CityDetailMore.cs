@@ -1,13 +1,13 @@
+using SubNine.Data.Entities;
+
 namespace SubNine.Data.Models
 {
-    public class CityDetailDTO
+    public class CityDetailMore : CityDetail
     {
         public long Id { get; set; }
 
-        public string Name { get; set; }
-
         public string Label { get; set; }
 
-        public long CountryId { get; set; }
+        public CountryDetail Country { get; set; }
     }
 }

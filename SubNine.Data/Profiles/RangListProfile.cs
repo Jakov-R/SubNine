@@ -9,17 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public RangListProfile()
         {
-            CreateMap<RangList, RangListDetailDTO>()
-            .ForMember(
-                dest => dest.Place,
-                opt => opt.MapFrom(src => src.Place)
-            );
-
-            CreateMap<RangListCreateDTO, RangList>()
-            .ForMember(
-                dest => dest.Place,
-                opt => opt.MapFrom(src => src.Place)
-            );
+            CreateMap<RangList, RangListDetail>();
+            CreateMap<RangList, RangListDetailMore>();
+            CreateMap<RangListCreate, RangList>();
         }
     }
 }

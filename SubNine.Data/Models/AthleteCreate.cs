@@ -2,7 +2,7 @@ using System;
 
 namespace SubNine.Data.Models
 {
-    public class AthleteCreateDTO
+    public class AthleteCreate
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

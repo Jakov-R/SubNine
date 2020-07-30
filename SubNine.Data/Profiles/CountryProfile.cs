@@ -9,17 +9,15 @@ namespace SubNine.Data.Profiles
     {
         public CountryProfile()
         {
-            CreateMap<Country, CountryDetailDTO>()
+            CreateMap<Country, CountryDetail>();
+
+            CreateMap<Country, CountryDetailMore>()
             .ForMember(
                 dest => dest.Label,
                 opt => opt.MapFrom(src => src.Name.Substring(0,3))
             );
 
-            CreateMap<CountryCreateDTO, Country>()
-            .ForMember(
-                dest => dest.Name,
-                opt => opt.MapFrom(src => src.Name)
-            );
+            CreateMap<CountryCreate, Country>();
         }
     }
 }

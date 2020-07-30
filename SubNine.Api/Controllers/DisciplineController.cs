@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Disciplines;
-using SubNine.Core.Repositories;
-using SubNine.Data.Database;
+using SubNine.Core.Repositories.Disciplines;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -11,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/disciplines")]
-    public class DisciplineController : AppController
+    public class DisciplineController : BaseController
     {
         private readonly IDisciplineRepository subNineRepository;
         private readonly IMapper mapper;
@@ -26,30 +24,30 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<DisciplineDetailDTO>> GetDisciplines([FromQuery] string search)
+        public ActionResult<IEnumerable<DisciplineDetailMore>> GetDisciplines([FromQuery] string search)
         {
             var discipline = this.subNineRepository.GetAll(search);
-            var disciplineDTO = this.mapper.Map<IEnumerable<DisciplineDetailDTO>>(discipline);
+            var disciplineDTO = this.mapper.Map<IEnumerable<DisciplineDetailMore>>(discipline);
 
             return Ok(disciplineDTO);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<DisciplineDetailDTO> GetDiscipline(long id)
+        public ActionResult<DisciplineDetailMore> GetDiscipline(long id)
         {
             var discipline = this.subNineRepository.GetOne(id);
-            var disciplineDto = this.mapper.Map<DisciplineDetailDTO>(discipline);
+            var disciplineDTO = this.mapper.Map<DisciplineDetailMore>(discipline);
 
-            return Ok(disciplineDto);
+            return Ok(disciplineDTO);
         }
 
         [HttpPost]
-        public ActionResult<DisciplineDetailDTO> CreateDiscipline(DisciplineCreateDTO disciplineDTO)
+        public ActionResult<DisciplineDetailMore> CreateDiscipline(DisciplineCreate disciplineDTO)
         {
             var discipline = this.mapper.Map<Discipline>(disciplineDTO);
             discipline = this.subNineRepository.Create(discipline);
 
-            return this.mapper.Map<DisciplineDetailDTO>(discipline);
+            return this.mapper.Map<DisciplineDetailMore>(discipline);
         }
 
         [HttpDelete("{id}")]
@@ -59,10 +57,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<DisciplineDetailDTO> UpdateDiscipline(long id, [FromBody] Discipline updatedDiscipline)
+        public ActionResult<DisciplineDetailMore> UpdateDiscipline(long id, [FromBody] Discipline updatedDiscipline)
         {
             var discipline = this.subNineRepository.Update(id, updatedDiscipline);
-            var disciplineResult = this.mapper.Map<DisciplineDetailDTO>(discipline);
+            var disciplineResult = this.mapper.Map<DisciplineDetailMore>(discipline);
 
             return disciplineResult;
         }

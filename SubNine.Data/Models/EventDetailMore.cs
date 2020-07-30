@@ -1,8 +1,7 @@
 namespace SubNine.Data.Models
 {
-    public class EventDetailDTO
+    public class EventDetailMore : EventDetail
     {
         public long Id { get; set; }
-        public string Name { get; set; }
     }
 }

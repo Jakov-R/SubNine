@@ -9,17 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public ParticipationProfile()
         {
-            CreateMap<Participation, ParticipationDetailDTO>()
-            .ForMember(
-                dest => dest.Result,
-                opt => opt.MapFrom(src => src.Result)
-            );
-
-            CreateMap<ParticipationCreateDTO, Participation>()
-            .ForMember(
-                dest => dest.Result,
-                opt => opt.MapFrom(src => src.Result)
-            );
+            CreateMap<Participation, ParticipationDetail>();
+            CreateMap<Participation, ParticipationDetailMore>();
+            CreateMap<ParticipationCreate, Participation>();
         }
     }
 }

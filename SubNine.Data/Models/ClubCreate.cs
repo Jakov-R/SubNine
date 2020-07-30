@@ -1,6 +1,6 @@
 namespace SubNine.Data.Models
 {
-    public class ClubCreateDTO
+    public class ClubCreate
     {
         public string Name { get; set; }
         public string ShirtColor { get; set; }

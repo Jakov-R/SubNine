@@ -8,13 +8,15 @@ namespace SubNine.Data.Profiles
     {
         public CityProfile()
         {
-            CreateMap<City, CityDetailDTO>()
+            CreateMap<City, CityDetail>();
+
+            CreateMap<City, CityDetailMore>()
             .ForMember(
                 dest => dest.Label,
                 opt => opt.MapFrom(src => src.Name.Substring(0,2))
             );
             
-            CreateMap<CityCreateDTO, City>()
+            CreateMap<CityCreate, City>()
             .ForMember(
                 dest => dest.Name,
                 opt => opt.MapFrom(src => src.Name)

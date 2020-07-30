@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
+using SubNine.Data.Models;
 
 namespace SubNine.Core.Repositories.Clubs
 {
@@ -29,12 +30,18 @@ namespace SubNine.Core.Repositories.Clubs
                 );
             }
 
+            query = query
+            .Include(c => c.City);
+
             return query.ToList();
         }
 
         public Club GetOne(long id)
         {
-            return this.context.Clubs.Where(a => a.Id == id).Single();
+            return this.context.Clubs
+            .Where(a => a.Id == id)
+            .Include(c => c.City)
+            .Single();
         }
 
         public IEnumerable<Club> GetMultiple(IEnumerable<long> ids)

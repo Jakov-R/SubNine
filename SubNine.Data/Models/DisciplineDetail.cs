@@ -1,6 +1,6 @@
 namespace SubNine.Data.Models
 {
-    public class CategoryCreateDTO
+    public class DisciplineDetail
     {
         public string Name { get; set; }
     }

@@ -29,12 +29,18 @@ namespace SubNine.Core.Repositories.Categories
                 );
             }
 
+            query = query
+            .Include(c => c.Disciplines);
+
             return query.ToList();
         }
 
         public Category GetOne(long id)
         {
-            return this.context.Categories.Where(a => a.Id == id).Single();
+            return this.context.Categories
+            .Where(a => a.Id == id)
+            .Include(c => c.Disciplines)
+            .Single();
         }
 
         public IEnumerable<Category> GetMultiple(IEnumerable<long> ids)

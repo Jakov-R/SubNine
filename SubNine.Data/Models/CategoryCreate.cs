@@ -1,8 +1,7 @@
 namespace SubNine.Data.Models
 {
-    public class DisciplineCreateDTO
+    public class CategoryCreate
     {
         public string Name { get; set; }
-        public long CategoryId { get; set; }
     }
 }

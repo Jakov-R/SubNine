@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Categories;
-using SubNine.Core.Repositories;
-using SubNine.Data.Database;
+using SubNine.Core.Repositories.Categories;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -11,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/categories")]
-    public class CategoryController : AppController
+    public class CategoryController : BaseController
     {
         private readonly ICategoryRepository subNineRepository;
         private readonly IMapper mapper;
@@ -26,30 +24,30 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CategoryDetailDTO>> GetCategories([FromQuery] string search)
+        public ActionResult<IEnumerable<CategoryDetailMore>> GetCategories([FromQuery] string search)
         {
             var category = this.subNineRepository.GetAll(search);
-            var categoryDTO = this.mapper.Map<IEnumerable<CategoryDetailDTO>>(category);
+            var categoryDTO = this.mapper.Map<IEnumerable<CategoryDetailMore>>(category);
 
             return Ok(categoryDTO);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CategoryDetailDTO> GetCategory(long id)
+        public ActionResult<CategoryDetailMore> GetCategory(long id)
         {
             var category = this.subNineRepository.GetOne(id);
-            var categoryDTO = this.mapper.Map<CategoryDetailDTO>(category);
+            var categoryDTO = this.mapper.Map<CategoryDetailMore>(category);
 
             return Ok(categoryDTO);
         }
 
         [HttpPost]
-        public ActionResult<CategoryDetailDTO> CreateAthlete(CategoryCreateDTO categoryDTO)
+        public ActionResult<CategoryDetailMore> CreateAthlete(CategoryCreate categoryDTO)
         {
             var category = this.mapper.Map<Category>(categoryDTO);
             category = this.subNineRepository.Create(category);
 
-            return this.mapper.Map<CategoryDetailDTO>(category);
+            return this.mapper.Map<CategoryDetailMore>(category);
         }
 
         [HttpDelete("{id}")]
@@ -59,10 +57,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<CategoryDetailDTO> UpdateCategory(long id, [FromBody] Category updatedCategory)
+        public ActionResult<CategoryDetailMore> UpdateCategory(long id, [FromBody] Category updatedCategory)
         {
             var category = this.subNineRepository.Update(id, updatedCategory);
-            var categoryResult = this.mapper.Map<CategoryDetailDTO>(category);
+            var categoryResult = this.mapper.Map<CategoryDetailMore>(category);
 
             return categoryResult;
         }

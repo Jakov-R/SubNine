@@ -9,7 +9,7 @@ namespace SubNine.Data.Profiles
     {
         public AthleteProfile()
         {
-            CreateMap<Athlete, AthleteDetailDTO>()
+            CreateMap<Athlete, AthleteDetail>()
             .ForMember(
                 dest => dest.YearsOld,
                 opt => opt.MapFrom(src => DateTime.Now.Year - src.DateOfBirth.Year))
@@ -18,7 +18,16 @@ namespace SubNine.Data.Profiles
                 opt => opt.MapFrom(src => src.FirstName + " " + src.LastName)
             );
 
-            CreateMap<AthleteCreateDTO, Athlete>()
+            CreateMap<Athlete, AthleteDetailMore>()
+            .ForMember(
+                dest => dest.YearsOld,
+                opt => opt.MapFrom(src => DateTime.Now.Year - src.DateOfBirth.Year))
+            .ForMember(
+                dest => dest.FullName,
+                opt => opt.MapFrom(src => src.FirstName + " " + src.LastName)
+            );
+
+            CreateMap<AthleteCreate, Athlete>()
             .ForMember(
                 dest => dest.DateOfBirth,
                 opt => opt.MapFrom(src => new DateTime(src.Year, src.Month, src.Day))

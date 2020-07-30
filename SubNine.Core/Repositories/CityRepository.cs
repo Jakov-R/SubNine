@@ -29,12 +29,18 @@ namespace SubNine.Core.Repositories.Cities
                 );
             }
 
+            query = query
+            .Include(c => c.Country);
+
             return query.ToList();
         }
 
         public City GetOne(long id)
         {
-            return this.context.Cities.Where(a => a.Id == id).Single();
+            return this.context.Cities
+            .Where(a => a.Id == id)
+            .Include(c => c.Country)
+            .Single();
         }
 
         public IEnumerable<City> GetMultiple(IEnumerable<long> ids)

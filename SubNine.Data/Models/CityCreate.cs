@@ -1,6 +1,6 @@
 namespace SubNine.Data.Models
 {
-    public class CityCreateDTO
+    public class CityCreate
     {
         public string Name { get; set; }
 

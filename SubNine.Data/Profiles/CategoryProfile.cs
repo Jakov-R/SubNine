@@ -8,13 +8,11 @@ namespace SubNine.Data.Profiles
     {
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryDetailDTO>()
-            .ForMember(
-                dest => dest.Name,
-                opt => opt.MapFrom(src => src.Name)
-            );
+            CreateMap<Category, CategoryDetail>();
 
-            CreateMap<CategoryCreateDTO, Category>()
+            CreateMap<Category, CategoryDetailMore>();
+
+            CreateMap<CategoryCreate, Category>()
             .ForMember(
                 dest => dest.Name,
                 opt => opt.MapFrom(src => src.Name)

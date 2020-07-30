@@ -29,12 +29,21 @@ namespace SubNine.Core.Repositories.Participations
                 );
             }
 
+            query = query
+            .Include(p => p.Athlete)
+            .Include(p => p.Event)
+            .Include(p => p.Discipline);
+
             return query.ToList();
         }
 
         public Participation GetOne(long id)
         {
-            return this.context.Participations.Where(a => a.Id == id).Single();
+            return this.context.Participations.Where(a => a.Id == id)
+            .Include(p => p.Athlete)
+            .Include(p => p.Event)
+            .Include(p => p.Discipline)
+            .Single();
         }
 
         public IEnumerable<Participation> GetMultiple(IEnumerable<long> ids)

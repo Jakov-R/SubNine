@@ -1,6 +1,6 @@
 namespace SubNine.Data.Models
 {
-    public class ParticipationCreateDTO
+    public class ParticipationCreate
     {
         public double Result { get; set; }
 

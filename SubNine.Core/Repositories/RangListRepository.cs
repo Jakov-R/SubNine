@@ -29,12 +29,20 @@ namespace SubNine.Core.Repositories.RangLists
                 );
             }
 
+            query = query
+            .Include(r => r.Athlete)
+            .Include(r => r.Event);
+
             return query.ToList();
         }
 
         public RangList GetOne(long id)
         {
-            return this.context.RangLists.Where(a => a.Id == id).Single();
+            return this.context.RangLists
+            .Where(a => a.Id == id)
+            .Include(r => r.Athlete)
+            .Include(r => r.Event)
+            .Single();
         }
 
         public IEnumerable<RangList> GetMultiple(IEnumerable<long> ids)

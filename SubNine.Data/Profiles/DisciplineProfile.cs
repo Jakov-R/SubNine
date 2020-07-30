@@ -9,13 +9,11 @@ namespace SubNine.Data.Profiles
     {
         public DisciplineProfile()
         {
-            CreateMap<Discipline, DisciplineDetailDTO>()
-            .ForMember(
-                dest => dest.Name,
-                opt => opt.MapFrom(src => src.Name)
-            );
+            CreateMap<Discipline, DisciplineDetail>();
 
-            CreateMap<DisciplineCreateDTO, Discipline>()
+            CreateMap<Discipline, DisciplineDetailMore>();
+
+            CreateMap<DisciplineCreate, Discipline>()
             .ForMember(
                 dest => dest.Name,
                 opt => opt.MapFrom(src => src.Name)

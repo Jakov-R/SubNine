@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Cities;
+using SubNine.Core.Repositories.Cities;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -9,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/cities")]
-    public class CityController : AppController
+    public class CityController : BaseController
     {
         private readonly ICityRepository subNineRepository;
         private readonly IMapper mapper;
@@ -24,30 +24,30 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CityDetailDTO>> GetCities([FromQuery] string search)
+        public ActionResult<IEnumerable<CityDetailMore>> GetCities([FromQuery] string search)
         {
             var city = this.subNineRepository.GetAll(search);
-            var cityDTO = this.mapper.Map<IEnumerable<CityDetailDTO>>(city);
+            var cityDTO = this.mapper.Map<IEnumerable<CityDetailMore>>(city);
 
             return Ok(cityDTO);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CityDetailDTO> GetCity(long id)
+        public ActionResult<CityDetailMore> GetCity(long id)
         {
             var city = this.subNineRepository.GetOne(id);
-            var cityDto = this.mapper.Map<CityDetailDTO>(city);
+            var cityDto = this.mapper.Map<CityDetailMore>(city);
 
             return Ok(cityDto);
         }
 
         [HttpPost]
-        public ActionResult<CityDetailDTO> CreateCity(CityCreateDTO cityDTO)
+        public ActionResult<CityDetailMore> CreateCity(CityCreate cityDTO)
         {
             var city = this.mapper.Map<City>(cityDTO);
             city = this.subNineRepository.Create(city);
 
-            return this.mapper.Map<CityDetailDTO>(city);
+            return this.mapper.Map<CityDetailMore>(city);
         }
 
         [HttpDelete("{id}")]
@@ -57,10 +57,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<CityDetailDTO> UpdateCity(long id, [FromBody] City updatedCity)
+        public ActionResult<CityDetailMore> UpdateCity(long id, [FromBody] City updatedCity)
         {
             var city = this.subNineRepository.Update(id, updatedCity);
-            var cityResult = this.mapper.Map<CityDetailDTO>(city);
+            var cityResult = this.mapper.Map<CityDetailMore>(city);
 
             return cityResult;
         }

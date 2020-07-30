@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
@@ -29,12 +28,18 @@ namespace SubNine.Core.Repositories.Disciplines
                 );
             }
 
+            query = query
+            .Include(d => d.Category);
+
             return query.ToList();
         }
 
         public Discipline GetOne(long id)
         {
-            return this.context.Disciplines.Where(a => a.Id == id).Single();
+            return this.context.Disciplines
+            .Where(a => a.Id == id)
+            .Include(d => d.Category)
+            .Single();
         }
 
         public IEnumerable<Discipline> GetMultiple(IEnumerable<long> ids)

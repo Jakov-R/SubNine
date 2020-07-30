@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Countries;
-using SubNine.Core.Repositories;
-using SubNine.Data.Database;
+using SubNine.Core.Repositories.Countries;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -11,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/countries")]
-    public class CountryController : AppController
+    public class CountryController : BaseController
     {
         private readonly ICountryRepository subNineRepository;
         private readonly IMapper mapper;
@@ -26,30 +24,30 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CountryDetailDTO>> GetCountries([FromQuery] string search)
+        public ActionResult<IEnumerable<CountryDetailMore>> GetCountries([FromQuery] string search)
         {
             var country = this.subNineRepository.GetAll(search);
-            var countryDTO = this.mapper.Map<IEnumerable<CountryDetailDTO>>(country);
+            var countryDTO = this.mapper.Map<IEnumerable<CountryDetailMore>>(country);
 
             return Ok(countryDTO);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CountryDetailDTO> GetCountry(long id)
+        public ActionResult<CountryDetail> GetCountry(long id)
         {
             var country = this.subNineRepository.GetOne(id);
-            var countryDto = this.mapper.Map<CountryDetailDTO>(country);
+            var countryDto = this.mapper.Map<CountryDetail>(country);
 
             return Ok(countryDto);
         }
 
         [HttpPost]
-        public ActionResult<CountryDetailDTO> CreateCountry(CountryCreateDTO countryDTO)
+        public ActionResult<CountryDetail> CreateCountry(CountryCreate countryDTO)
         {
             var country = this.mapper.Map<Country>(countryDTO);
             country = this.subNineRepository.Create(country);
 
-            return this.mapper.Map<CountryDetailDTO>(country);
+            return this.mapper.Map<CountryDetail>(country);
         }
 
         [HttpDelete("{id}")]
@@ -59,10 +57,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<CountryDetailDTO> UpdateCountry(long id, [FromBody] Country updatedCountry)
+        public ActionResult<CountryDetail> UpdateCountry(long id, [FromBody] Country updatedCountry)
         {
             var country = this.subNineRepository.Update(id, updatedCountry);
-            var countryResult = this.mapper.Map<CountryDetailDTO>(country);
+            var countryResult = this.mapper.Map<CountryDetail>(country);
 
             return countryResult;
         }
