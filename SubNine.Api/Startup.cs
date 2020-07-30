@@ -39,7 +39,7 @@ namespace SubNine.Api
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             /* database connection, used from appsettings */
-            services.AddDbContext<SubNineContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 //options.UseSqlServer(Configuration["ConnectionStrings:Default"], x => x.MigrationsAssembly("SubNine.Data"))
                 options.UseSqlServer(Configuration["ConnectionStrings:Default"])
             );

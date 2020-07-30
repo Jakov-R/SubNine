@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SubNine.Data.Entities
 {
-    public class RangList : AppModel
+    public class RangList : BaseEntity
     {
         [Required]
         public int Place { get; set; }

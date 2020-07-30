@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SubNine.Data.Entities
 {
-    public class Athlete : AppModel
+    public class Athlete : BaseEntity
     {
         [Required]
         [MaxLength(50)]

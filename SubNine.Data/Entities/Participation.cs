@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SubNine.Data.Entities
 {
-    public class Participation : AppModel
+    public class Participation : BaseEntity
     {
         [Required]
         public double Result { get; set; }

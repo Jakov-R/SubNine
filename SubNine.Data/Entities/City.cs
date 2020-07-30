@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SubNine.Data.Entities
 {
-    public class City : AppModel
+    public class City : BaseEntity
     {
         [Required]
         [MaxLength(50)]

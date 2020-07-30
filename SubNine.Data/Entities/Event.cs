@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SubNine.Data.Entities
 {
-    public class Event : AppModel
+    public class Event : BaseEntity
     {
         [Required]
         [MaxLength(50)]
