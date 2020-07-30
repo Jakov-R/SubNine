@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Clubs
+namespace SubNine.Core.Repositories.Clubs
 {
+    public interface IClubRepository : IRepository<Club>{}
+    
     public class ClubRepository : IClubRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public ClubRepository(SubNineContext context)
+        public ClubRepository(ApplicationContext context)
         {
             this.context = context;
         }

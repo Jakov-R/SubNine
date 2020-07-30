@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Events
+namespace SubNine.Core.Repositories.Events
 {
+    public interface IEventRepository : IRepository<Event>{}
+    
     public class EventRepository : IEventRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public EventRepository(SubNineContext context)
+        public EventRepository(ApplicationContext context)
         {
             this.context = context;
         }

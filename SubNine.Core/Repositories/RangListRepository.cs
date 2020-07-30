@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.RangLists
+namespace SubNine.Core.Repositories.RangLists
 {
+    public interface IRangListRepository : IRepository<RangList>{}
+    
     public class RangListRepository : IRangListRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public RangListRepository(SubNineContext context)
+        public RangListRepository(ApplicationContext context)
         {
             this.context = context;
         }

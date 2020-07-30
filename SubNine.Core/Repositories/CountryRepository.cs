@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Countries
+namespace SubNine.Core.Repositories.Countries
 {
+    public interface ICountryRepository : IRepository<Country>{}
+    
     public class CountryRepository : ICountryRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public CountryRepository(SubNineContext context)
+        public CountryRepository(ApplicationContext context)
         {
             this.context = context;
         }

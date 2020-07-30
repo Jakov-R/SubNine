@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Disciplines
+namespace SubNine.Core.Repositories.Disciplines
 {
+    public interface IDisciplineRepository : IRepository<Discipline>{}
+    
     public class DisciplineRepository : IDisciplineRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public DisciplineRepository(SubNineContext context)
+        public DisciplineRepository(ApplicationContext context)
         {
             this.context = context;
         }

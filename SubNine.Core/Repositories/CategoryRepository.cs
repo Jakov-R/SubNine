@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Categories
+namespace SubNine.Core.Repositories.Categories
 {
+    public interface ICategoryRepository : IRepository<Category>{}
+    
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public CategoryRepository(SubNineContext context)
+        public CategoryRepository(ApplicationContext context)
         {
             this.context = context;
         }

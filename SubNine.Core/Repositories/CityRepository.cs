@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Cities
+namespace SubNine.Core.Repositories.Cities
 {
+    public interface ICityRepository : IRepository<City>{}
+    
     public class CityRepository : ICityRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public CityRepository(SubNineContext context)
+        public CityRepository(ApplicationContext context)
         {
             this.context = context;
         }

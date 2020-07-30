@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Athletes
+namespace SubNine.Core.Repositories.Athletes
 {
+    public interface IAthleteRepository : IRepository<Athlete>{}
+    
     public class AthleteRepository : IAthleteRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public AthleteRepository(SubNineContext context)
+        public AthleteRepository(ApplicationContext context)
         {
             this.context = context;
         }

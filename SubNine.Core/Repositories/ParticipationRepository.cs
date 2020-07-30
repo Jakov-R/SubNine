@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.repositories.Participations
+namespace SubNine.Core.Repositories.Participations
 {
+    public interface IParticipationRepository : IRepository<Participation>{}
+    
     public class ParticipationRepository : IParticipationRepository
     {
-        private readonly SubNineContext context;
+        private readonly ApplicationContext context;
 
-        public ParticipationRepository(SubNineContext context)
+        public ParticipationRepository(ApplicationContext context)
         {
             this.context = context;
         }
