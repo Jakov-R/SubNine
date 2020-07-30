@@ -1,14 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
-using SubNine.Core.repositories.Athletes;
-using SubNine.Core.repositories.Categories;
-using SubNine.Core.repositories.Cities;
-using SubNine.Core.repositories.Clubs;
-using SubNine.Core.repositories.Countries;
-using SubNine.Core.repositories.Disciplines;
-using SubNine.Core.repositories.Events;
-using SubNine.Core.repositories.Participations;
-using SubNine.Core.repositories.RangLists;
-using SubNine.Data.Entities;
+using SubNine.Core.Repositories.Athletes;
+using SubNine.Core.Repositories.Categories;
+using SubNine.Core.Repositories.Cities;
+using SubNine.Core.Repositories.Clubs;
+using SubNine.Core.Repositories.Countries;
+using SubNine.Core.Repositories.Disciplines;
+using SubNine.Core.Repositories.Events;
+using SubNine.Core.Repositories.Participations;
+using SubNine.Core.Repositories.RangLists;
 
 namespace SubNine.Api.Extensions
 {
