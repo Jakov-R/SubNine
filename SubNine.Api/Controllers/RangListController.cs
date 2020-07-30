@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.Repositories.RangLists;
+using SubNine.Core.repositories.RangLists;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
@@ -11,7 +11,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/rangLists")]
-    public class RangListController : BaseController
+    public class RangListController : AppController
     {
         private readonly IRangListRepository subNineRepository;
         private readonly IMapper mapper;

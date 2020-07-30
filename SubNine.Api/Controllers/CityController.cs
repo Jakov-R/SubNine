@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.Repositories.Cities;
+using SubNine.Core.repositories.Cities;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -9,7 +9,7 @@ namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/cities")]
-    public class CityController : BaseController
+    public class CityController : AppController
     {
         private readonly ICityRepository subNineRepository;
         private readonly IMapper mapper;
