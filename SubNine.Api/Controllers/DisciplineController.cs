@@ -1,34 +1,35 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.repositories.Disciplines;
+using SubNine.Core.Repositories.Disciplines;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace SubNine.Api.Controllers
 {
     [ApiController]
     [Route("api/disciplines")]
-    public class DisciplineController : AppController
+    public class DisciplineController : BaseController
     {
-        private readonly IDisciplineRepository subNineRepository;
+        private readonly IDisciplineRepository disciplineRepository;
         private readonly IMapper mapper;
 
         public DisciplineController(
-            IDisciplineRepository subNineRepository,
+            IDisciplineRepository disciplineRepository,
             IMapper mapper
         )
         {
-            this.subNineRepository = subNineRepository;
+            this.disciplineRepository = disciplineRepository;
             this.mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<DisciplineDetailDTO>> GetDisciplines([FromQuery] string search)
         {
-            var discipline = this.subNineRepository.GetAll(search);
+            var discipline = this.disciplineRepository.GetAll(search);
             var disciplineDTO = this.mapper.Map<IEnumerable<DisciplineDetailDTO>>(discipline);
 
             return Ok(disciplineDTO);
@@ -37,7 +38,7 @@ namespace SubNine.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<DisciplineDetailDTO> GetDiscipline(long id)
         {
-            var discipline = this.subNineRepository.GetOne(id);
+            var discipline = this.disciplineRepository.GetOne(id);
             var disciplineDto = this.mapper.Map<DisciplineDetailDTO>(discipline);
 
             return Ok(disciplineDto);
@@ -47,21 +48,30 @@ namespace SubNine.Api.Controllers
         public ActionResult<DisciplineDetailDTO> CreateDiscipline(DisciplineCreateDTO disciplineDTO)
         {
             var discipline = this.mapper.Map<Discipline>(disciplineDTO);
-            discipline = this.subNineRepository.Create(discipline);
+            discipline = this.disciplineRepository.Create(discipline);
 
             return this.mapper.Map<DisciplineDetailDTO>(discipline);
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<DisciplineDetailDTO> Patch(long id, [FromBody]JsonPatchDocument<Discipline> doc)
+        {
+            var discipline = this.disciplineRepository.GetOne(id);
+            doc.ApplyTo(discipline, ModelState);
+
+            return Ok(this.mapper.Map<DisciplineDetailDTO>(discipline));
         }
 
         [HttpDelete("{id}")]
         public ActionResult<object> DeleteDiscipline(long id)
         {
-            return new { success = this.subNineRepository.Delete(id) };
+            return new { success = this.disciplineRepository.Delete(id) };
         }
 
         [HttpPut("{id}")]
         public ActionResult<DisciplineDetailDTO> UpdateDiscipline(long id, [FromBody] Discipline updatedDiscipline)
         {
-            var discipline = this.subNineRepository.Update(id, updatedDiscipline);
+            var discipline = this.disciplineRepository.Update(id, updatedDiscipline);
             var disciplineResult = this.mapper.Map<DisciplineDetailDTO>(discipline);
 
             return disciplineResult;
