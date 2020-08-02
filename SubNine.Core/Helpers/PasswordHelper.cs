@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace Protests.Core.Helpers
+namespace SubNine.Core.Helpers
 {
     public static class PasswordHelper
     {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.Repositories.Disciplines
+namespace SubNine.Core.Repositories
 {
     public interface IDisciplineRepository : IRepository<Discipline>{}
     

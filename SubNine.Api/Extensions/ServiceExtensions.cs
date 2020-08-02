@@ -1,13 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-using SubNine.Core.Repositories.Athletes;
-using SubNine.Core.Repositories.Categories;
-using SubNine.Core.Repositories.Cities;
-using SubNine.Core.Repositories.Clubs;
-using SubNine.Core.Repositories.Countries;
-using SubNine.Core.Repositories.Disciplines;
-using SubNine.Core.Repositories.Events;
-using SubNine.Core.Repositories.Participations;
-using SubNine.Core.Repositories.RangLists;
+using SubNine.Api.Services;
+using SubNine.Core.Repositories;
 
 namespace SubNine.Api.Extensions
 {
@@ -15,6 +8,7 @@ namespace SubNine.Api.Extensions
     {
         public static void RegisterScopedServices(this IServiceCollection services)
         {
+            //repositories
             services.AddScoped<IAthleteRepository, AthleteRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
@@ -24,6 +18,10 @@ namespace SubNine.Api.Extensions
             services.AddScoped<IParticipationRepository, ParticipationRepository>();
             services.AddScoped<IRangListRepository, RangListRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            //services
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

@@ -10,7 +10,7 @@ using SubNine.Data.Database;
 namespace SubNine.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200730082005_Initialize")]
+    [Migration("20200802121211_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,8 @@ namespace SubNine.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -41,7 +42,8 @@ namespace SubNine.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 

@@ -54,8 +54,8 @@ namespace SubNine.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: true)
+                    Email = table.Column<string>(maxLength: 256, nullable: false),
+                    Password = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {

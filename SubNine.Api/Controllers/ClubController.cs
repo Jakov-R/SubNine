@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SubNine.Core.Repositories.Clubs;
+using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 

@@ -10,9 +10,11 @@ namespace SubNine.Data.Entities
         [Required]
         public string LastName { get; set; }
         [Required]
+        [MaxLength(256)]
         public string Email { get; set; }
 
         [JsonIgnore]
+        [MaxLength(128)]
         public string Password { get; set; }
 
         public AppUser(){}

@@ -5,7 +5,7 @@ using SubNine.Core.Repositories;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
-namespace SubNine.Core.Repositories.Cities
+namespace SubNine.Core.Repositories
 {
     public interface ICityRepository : IRepository<City>{}
     

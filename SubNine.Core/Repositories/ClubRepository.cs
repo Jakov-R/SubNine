@@ -6,7 +6,7 @@ using SubNine.Data.Database;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
-namespace SubNine.Core.Repositories.Clubs
+namespace SubNine.Core.Repositories
 {
     public interface IClubRepository : IRepository<Club>{}
     
