@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface IEventRepository : IRepository<Event>{}
+    public interface IEventRepository : IRepository<Event>
+    {
+        public Event Patch(long id, JsonPatchDocument<Event> doc);
+    }
     
     public class EventRepository : IEventRepository
     {
@@ -65,6 +69,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedEvent;
+        }
+
+        public Event Patch(long id, JsonPatchDocument<Event> doc)
+        {
+            var eventt = this.GetOne(id);
+            doc.ApplyTo(eventt);
+            this.context.SaveChanges();
+            return eventt;
         }
     }
 }

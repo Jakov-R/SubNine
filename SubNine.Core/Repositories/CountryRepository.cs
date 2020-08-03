@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface ICountryRepository : IRepository<Country>{}
+    public interface ICountryRepository : IRepository<Country>
+    {
+        public Country Patch(long id, JsonPatchDocument<Country> doc);
+    }
     
     public class CountryRepository : ICountryRepository
     {
@@ -71,6 +75,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedCountry;
+        }
+
+        public Country Patch(long id, JsonPatchDocument<Country> doc)
+        {
+            var country = this.GetOne(id);
+            doc.ApplyTo(country);
+            this.context.SaveChanges();
+            return country;
         }
     }
 }

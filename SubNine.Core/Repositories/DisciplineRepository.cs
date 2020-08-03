@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Data.Database;
 using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface IDisciplineRepository : IRepository<Discipline>{}
+    public interface IDisciplineRepository : IRepository<Discipline>
+    {
+        public Discipline Patch(long id, JsonPatchDocument<Discipline> doc);
+    }
     
     public class DisciplineRepository : IDisciplineRepository
     {
@@ -70,6 +74,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedDiscipline;
+        }
+
+        public Discipline Patch(long id, JsonPatchDocument<Discipline> doc)
+        {
+            var discipline = this.GetOne(id);
+            doc.ApplyTo(discipline);
+            this.context.SaveChanges();
+            return discipline;
         }
     }
 }

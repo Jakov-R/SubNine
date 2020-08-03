@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -8,7 +9,10 @@ using SubNine.Data.Models;
 
 namespace SubNine.Core.Repositories
 {
-    public interface IClubRepository : IRepository<Club>{}
+    public interface IClubRepository : IRepository<Club>
+    {
+        public Club Patch(long id, JsonPatchDocument<Club> doc);
+    }
     
     public class ClubRepository : IClubRepository
     {
@@ -72,6 +76,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedClub;
+        }
+
+        public Club Patch(long id, JsonPatchDocument<Club> doc)
+        {
+            var club = this.GetOne(id);
+            doc.ApplyTo(club);
+            this.context.SaveChanges();
+            return club;
         }
     }
 }

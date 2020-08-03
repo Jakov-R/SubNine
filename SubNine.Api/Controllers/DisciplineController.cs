@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
@@ -63,6 +64,14 @@ namespace SubNine.Api.Controllers
             var disciplineResult = this.mapper.Map<DisciplineDetailMore>(discipline);
 
             return disciplineResult;
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<DisciplineDetail> Patch(int id, [FromBody]JsonPatchDocument<Discipline> doc)
+        {
+            var discipline = this.subNineRepository.GetOne(id);
+            this.subNineRepository.Patch(id, doc);
+            return Ok(discipline);
         }
     }
 }

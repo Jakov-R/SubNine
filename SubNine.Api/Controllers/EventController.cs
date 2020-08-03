@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
@@ -63,6 +64,14 @@ namespace SubNine.Api.Controllers
             var eventtResult = this.mapper.Map<EventDetailMore>(eventt);
 
             return eventtResult;
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<EventDetail> Patch(int id, [FromBody]JsonPatchDocument<Event> doc)
+        {
+            var eventt = this.subNineRepository.GetOne(id);
+            this.subNineRepository.Patch(id, doc);
+            return Ok(eventt);
         }
     }
 }

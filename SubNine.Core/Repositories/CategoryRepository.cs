@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface ICategoryRepository : IRepository<Category>{}
+    public interface ICategoryRepository : IRepository<Category>
+    {
+        public Category Patch(long id, JsonPatchDocument<Category> doc);
+    }
     
     public class CategoryRepository : ICategoryRepository
     {
@@ -71,6 +75,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedCategory;
+        }
+
+        public Category Patch(long id, JsonPatchDocument<Category> doc)
+        {
+            var category = this.GetOne(id);
+            doc.ApplyTo(category);
+            this.context.SaveChanges();
+            return category;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface IParticipationRepository : IRepository<Participation>{}
+    public interface IParticipationRepository : IRepository<Participation>
+    {
+        public Participation Patch(long id, JsonPatchDocument<Participation> doc);
+    }
     
     public class ParticipationRepository : IParticipationRepository
     {
@@ -74,6 +78,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedParticipation;
+        }
+
+        public Participation Patch(long id, JsonPatchDocument<Participation> doc)
+        {
+            var participation = this.GetOne(id);
+            doc.ApplyTo(participation);
+            this.context.SaveChanges();
+            return participation;
         }
     }
 }

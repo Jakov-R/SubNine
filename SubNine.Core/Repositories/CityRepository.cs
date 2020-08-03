@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface ICityRepository : IRepository<City>{}
+    public interface ICityRepository : IRepository<City>
+    {
+        public City Patch(long id, JsonPatchDocument<City> doc);
+    }
     
     public class CityRepository : ICityRepository
     {
@@ -71,6 +75,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedCity;
+        }
+
+        public City Patch(long id, JsonPatchDocument<City> doc)
+        {
+            var city = this.GetOne(id);
+            doc.ApplyTo(city);
+            this.context.SaveChanges();
+            return city;
         }
     }
 }

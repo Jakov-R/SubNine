@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
@@ -63,6 +64,14 @@ namespace SubNine.Api.Controllers
             var cityResult = this.mapper.Map<CityDetailMore>(city);
 
             return cityResult;
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<CityDetail> Patch(int id, [FromBody]JsonPatchDocument<City> doc)
+        {
+            var city = this.subNineRepository.GetOne(id);
+            this.subNineRepository.Patch(id, doc);
+            return Ok(city);
         }
     }
 }

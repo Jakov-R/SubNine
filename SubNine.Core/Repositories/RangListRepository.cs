@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface IRangListRepository : IRepository<RangList>{}
+    public interface IRangListRepository : IRepository<RangList>
+    {
+        public RangList Patch(long id, JsonPatchDocument<RangList> doc);
+    }
     
     public class RangListRepository : IRangListRepository
     {
@@ -73,6 +77,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedRangList;
+        }
+
+        public RangList Patch(long id, JsonPatchDocument<RangList> doc)
+        {
+            var rangList = this.GetOne(id);
+            doc.ApplyTo(rangList);
+            this.context.SaveChanges();
+            return rangList;
         }
     }
 }

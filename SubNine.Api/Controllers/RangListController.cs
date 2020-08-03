@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
@@ -63,6 +64,14 @@ namespace SubNine.Api.Controllers
             var rangListResult = this.mapper.Map<RangListDetailMore>(rangList);
 
             return rangListResult;
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<RangListDetail> Patch(int id, [FromBody]JsonPatchDocument<RangList> doc)
+        {
+            var rangList = this.subNineRepository.GetOne(id);
+            this.subNineRepository.Patch(id, doc);
+            return Ok(rangList);
         }
     }
 }

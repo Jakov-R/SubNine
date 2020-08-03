@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
@@ -63,6 +64,14 @@ namespace SubNine.Api.Controllers
             var participationResult = this.mapper.Map<ParticipationDetailMore>(participation);
 
             return participationResult;
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<ParticipationDetail> Patch(int id, [FromBody]JsonPatchDocument<Participation> doc)
+        {
+            var participation = this.subNineRepository.GetOne(id);
+            this.subNineRepository.Patch(id, doc);
+            return Ok(participation);
         }
     }
 }

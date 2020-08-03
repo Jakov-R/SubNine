@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
@@ -54,6 +55,14 @@ namespace SubNine.Api.Controllers
         public ActionResult<object> DeleteAthlete(long id)
         {
             return new { success = this.subNineRepository.Delete(id) };
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult<AthleteDetail> Patch(int id, [FromBody]JsonPatchDocument<Athlete> doc)
+        {
+            var protest = this.subNineRepository.GetOne(id);
+            this.subNineRepository.Patch(id, doc);
+            return Ok(protest);
         }
 
         [HttpPut("{id}")]

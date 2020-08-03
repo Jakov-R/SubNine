@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using SubNine.Core.Repositories;
 using SubNine.Data.Database;
@@ -7,7 +8,10 @@ using SubNine.Data.Entities;
 
 namespace SubNine.Core.Repositories
 {
-    public interface IAthleteRepository : IRepository<Athlete>{}
+    public interface IAthleteRepository : IRepository<Athlete>
+    {
+        public Athlete Patch(long id, JsonPatchDocument<Athlete> doc);
+    }
     
     public class AthleteRepository : IAthleteRepository
     {
@@ -70,6 +74,14 @@ namespace SubNine.Core.Repositories
             this.context.SaveChanges();
 
             return updatedAthlete;
+        }
+
+        public Athlete Patch(long id, JsonPatchDocument<Athlete> doc)
+        {
+            var protest = this.GetOne(id);
+            doc.ApplyTo(protest);
+            this.context.SaveChanges();
+            return protest;
         }
     }
 }
