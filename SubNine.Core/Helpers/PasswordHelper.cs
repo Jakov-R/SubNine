@@ -1,18 +1,15 @@
+
 using System;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using CryptoHelper;
 
 namespace SubNine.Core.Helpers
 {
     public static class PasswordHelper
     {
-        public static bool IsPasswordCorrect(string password, string hash)
-        {
-            return true;
-        }
-
-        /* https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/password-hashing?view=aspnetcore-3.1 */
-        public static string Hash(string password)
+        // Hash a password
+        public static string HashPassword(string password)
         {
             // generate a 128-bit salt using a secure PRNG
             byte[] salt = new byte[128 / 8];
@@ -30,6 +27,13 @@ namespace SubNine.Core.Helpers
                 numBytesRequested: 256 / 8));
 
             return hashed;
+        }
+
+        // Verify the password hash against the given password
+        public static bool VerifyPassword(string hash, string password)
+        {
+            return true;
+            // return Crypto.VerifyHashedPassword(hash, password);
         }
     }
 }

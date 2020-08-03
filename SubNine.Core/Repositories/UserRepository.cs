@@ -17,7 +17,7 @@ namespace SubNine.Core.Repositories
 
         public AppUser Create(AppUser entity)
         {
-            entity.Password = PasswordHelper.Hash(entity.Password);
+            entity.Password = PasswordHelper.HashPassword(entity.Password);
             this.context.Users.Add(entity);
             this.context.SaveChanges();
             return entity;

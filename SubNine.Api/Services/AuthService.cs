@@ -38,7 +38,7 @@ namespace SubNine.Api.Services
 
         public UserDetail Register(AppUser user)
         {
-            user.Password = PasswordHelper.Hash(user.Password);
+            user.Password = PasswordHelper.HashPassword(user.Password);
 
             /* create user and convert to UserDetail */
             var userDetail = this.mapper.Map<UserDetail>(
@@ -51,7 +51,7 @@ namespace SubNine.Api.Services
         public string Login(string email, string password)
         {
             var user = this.userRepository.FindByEmail(email);
-            var isLoginCorrect = PasswordHelper.IsPasswordCorrect(password, user.Password);
+            var isLoginCorrect = PasswordHelper.VerifyPassword(password, user.Password);
 
             if (isLoginCorrect)
             {
