@@ -40,7 +40,7 @@ namespace SubNine.Api.Middleware
                 await next(context);
             } catch (Exception ex)
             {
-                   throw ex;
+                   //throw ex;
             }
         }
     }

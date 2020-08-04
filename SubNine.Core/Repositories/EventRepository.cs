@@ -38,7 +38,11 @@ namespace SubNine.Core.Repositories
 
         public Event GetOne(long id)
         {
-            return this.context.Events.Where(a => a.Id == id).Single();
+            return this.context.Events
+            .Where(a => a.Id == id)
+            .Include( e => e.Participations)
+            .Include(e => e.RangLists)
+            .Single();
         }
 
         public IEnumerable<Event> GetMultiple(IEnumerable<long> ids)

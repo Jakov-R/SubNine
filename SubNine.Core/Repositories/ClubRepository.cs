@@ -35,7 +35,8 @@ namespace SubNine.Core.Repositories
             }
 
             query = query
-            .Include(c => c.City);
+            .Include(c => c.City)
+            .Include(c => c.Athletes);
 
             return query.ToList();
         }
@@ -45,6 +46,7 @@ namespace SubNine.Core.Repositories
             return this.context.Clubs
             .Where(a => a.Id == id)
             .Include(c => c.City)
+            .Include(c => c.Athletes)
             .Single();
         }
 
