@@ -60,9 +60,9 @@ namespace SubNine.Api.Controllers
         [HttpPatch("{id}")]
         public ActionResult<AthleteDetail> Patch(int id, [FromBody]JsonPatchDocument<Athlete> doc)
         {
-            var protest = this.subNineRepository.GetOne(id);
+            var athlete = this.subNineRepository.GetOne(id);
             this.subNineRepository.Patch(id, doc);
-            return Ok(protest);
+            return Ok(athlete);
         }
 
         [HttpPut("{id}")]

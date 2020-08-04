@@ -78,10 +78,10 @@ namespace SubNine.Core.Repositories
 
         public Athlete Patch(long id, JsonPatchDocument<Athlete> doc)
         {
-            var protest = this.GetOne(id);
-            doc.ApplyTo(protest);
+            var athlete = this.GetOne(id);
+            doc.ApplyTo(athlete);
             this.context.SaveChanges();
-            return protest;
+            return athlete;
         }
     }
 }
