@@ -8,7 +8,7 @@ namespace SubNine.Data.Profiles
     {
         public CityProfile()
         {
-            CreateMap<City, CityDetail>();
+            CreateMap<City, CityDetail>().ReverseMap();
 
             CreateMap<City, CityDetailMore>()
             .ForMember(

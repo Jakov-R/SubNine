@@ -9,9 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public RangListProfile()
         {
-            CreateMap<RangList, RangListDetail>();
-            CreateMap<RangList, RangListDetailMore>();
-            CreateMap<RangListCreate, RangList>();
+            CreateMap<RangList, RangListDetail>().ReverseMap();
+            CreateMap<RangList, RangListDetailMore>().ReverseMap();
+            CreateMap<RangListCreate, RangList>().ReverseMap();
         }
     }
 }

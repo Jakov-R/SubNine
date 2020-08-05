@@ -9,9 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public EventProfile()
         {
-            CreateMap<Event, EventDetail>();
-            CreateMap<Event, EventDetailMore>();
-            CreateMap<EventCreate, Event>();
+            CreateMap<Event, EventDetail>().ReverseMap();
+            CreateMap<Event, EventDetailMore>().ReverseMap();
+            CreateMap<EventCreate, Event>().ReverseMap();
         }
     }
 }

@@ -9,9 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public ParticipationProfile()
         {
-            CreateMap<Participation, ParticipationDetail>();
-            CreateMap<Participation, ParticipationDetailMore>();
-            CreateMap<ParticipationCreate, Participation>();
+            CreateMap<Participation, ParticipationDetail>().ReverseMap();
+            CreateMap<Participation, ParticipationDetailMore>().ReverseMap();
+            CreateMap<ParticipationCreate, Participation>().ReverseMap();
         }
     }
 }

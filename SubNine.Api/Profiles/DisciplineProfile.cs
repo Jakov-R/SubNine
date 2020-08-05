@@ -9,9 +9,9 @@ namespace SubNine.Data.Profiles
     {
         public DisciplineProfile()
         {
-            CreateMap<Discipline, DisciplineDetail>();
+            CreateMap<Discipline, DisciplineDetail>().ReverseMap();
 
-            CreateMap<Discipline, DisciplineDetailMore>();
+            CreateMap<Discipline, DisciplineDetailMore>().ReverseMap();
 
             CreateMap<DisciplineCreate, Discipline>()
             .ForMember(

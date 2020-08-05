@@ -8,9 +8,9 @@ namespace SubNine.Data.Profiles
     {
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryDetail>();
+            CreateMap<Category, CategoryDetail>().ReverseMap();
 
-            CreateMap<Category, CategoryDetailMore>();
+            CreateMap<Category, CategoryDetailMore>().ReverseMap();
 
             CreateMap<CategoryCreate, Category>()
             .ForMember(

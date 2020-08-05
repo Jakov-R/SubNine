@@ -9,7 +9,7 @@ namespace SubNine.Data.Profiles
     {
         public CountryProfile()
         {
-            CreateMap<Country, CountryDetail>();
+            CreateMap<Country, CountryDetail>().ReverseMap();
 
             CreateMap<Country, CountryDetailMore>()
             .ForMember(
@@ -17,7 +17,7 @@ namespace SubNine.Data.Profiles
                 opt => opt.MapFrom(src => src.Name.Substring(0,3))
             );
 
-            CreateMap<CountryCreate, Country>();
+            CreateMap<CountryCreate, Country>().ReverseMap();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SubNine.Data.Profiles
     {
         public ClubProfile()
         {
-            CreateMap<Club, ClubDetail>();
+            CreateMap<Club, ClubDetail>().ReverseMap();
             
             CreateMap<Club, ClubDetailMore>()
             .ForMember(
