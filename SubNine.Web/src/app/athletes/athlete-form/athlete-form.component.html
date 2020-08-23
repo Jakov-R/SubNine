@@ -15,19 +15,19 @@
         <span class="error-msg" *ngIf="errors && errors.fullName">{{ errors.fullName }}</span>
     </div>
 
-    <!-- yearsOld 
+    <!-- yearsOld --> 
     <div class="form-group">
-      <label for="description">Full name</label>
-      <textarea
+      <label for="description">Years old</label>
+      <input
+        matInput #postalCode
+        maxlength="3"
+        placeholder="Insert your age"
         class="form-control"
-        formControlName="fullName"
-        id="fullName"
-        [ngClass]="{'error-border': errors && errors.fullName }"
-        rows="10">We are inviting you to ...</textarea>
-        <span class="error-msg" *ngIf="errors && errors.Description">{{ errors.Description }}</span>
+        formControlName="yearsOld"
+        id="yearsOld"
+        [ngClass]="{'error-border': errors && errors.yearsOld }">
+        <span class="error-msg" *ngIf="errors && errors.yearsOld">{{ errors.yearsOld }}</span>
     </div>
-    -->
-
 
     <div class="form-row">
 

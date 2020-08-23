@@ -19,4 +19,14 @@ export class TokenService {
     getToken() {
         return localStorage.getItem(this.tokenName);
     }
+
+    setUser(user = {}) {
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+
+    getUser() {
+        let user = localStorage.getItem('user');
+        if(user) { return JSON.parse(user); }
+        return null;
+    }
 }

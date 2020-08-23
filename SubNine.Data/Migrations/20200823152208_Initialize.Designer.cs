@@ -10,7 +10,7 @@ using SubNine.Data.Database;
 namespace SubNine.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200810120419_Initialize")]
+    [Migration("20200823152208_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

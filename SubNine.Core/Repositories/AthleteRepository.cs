@@ -23,7 +23,7 @@ namespace SubNine.Core.Repositories
     {
         private readonly ApplicationContext context;
 
-        public int PerPage { get; set; } = 2;
+        public int PerPage { get; set; } = 4;
 
         public AthleteRepository(ApplicationContext context)
         {

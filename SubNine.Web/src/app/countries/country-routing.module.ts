@@ -4,7 +4,7 @@ import { CountryListComponent } from './country-list/country-list.component';
 import { CountryDetailComponent } from './country-detail/country-detail.component';
 
 const routes: Routes = [
-  { path: '', component: CountryListComponent },
+  { path: 'countries', component: CountryListComponent },
   { path: ':id', component: CountryDetailComponent }
 ];
 

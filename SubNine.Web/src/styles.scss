@@ -11,3 +11,14 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
 @import '~ngx-toastr/toastr';
+
+.error-border {
+    border: 2px solid red;
+}
+
+.error-msg {
+    padding-top: 0.8rem;
+    display: block;
+    color: red;
+    font-size: 0.8rem;
+}

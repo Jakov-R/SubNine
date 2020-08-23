@@ -6,7 +6,7 @@
     <div class="col-sm-6 mx-auto">
         <div class="input-group">
             <input [(ngModel)]="searchText" type="text" class="form-control"
-                placeholder="Upišite tekst za pretraživanje" (keyup.enter)="vm.page=1; loadAthletes()" />
+                placeholder="Upišite tekst za pretraživanje" (input)="vm.page=1; loadAthletes()" />
             <div class="input-group-append">
                 <div class="input-group-text"><i class="fas fa-search-location"></i></div>
             </div>
@@ -20,7 +20,7 @@
             </a>
             <h3 class="title font-weight-bold text-capitalize mt-3">{{ p.fullName }}</h3>
             <p class="description mt-4">
-                {{ p.fullName | slice:0:350 }}
+                {{ p.fullName }}
             </p>
             <a [routerLink]="['/athletes/', p.id]" routerLinkActive="active" class="action text-center mt-3 d-block">
                 <i class="fa fa-arrow-circle-right"></i>

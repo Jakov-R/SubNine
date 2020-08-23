@@ -21,6 +21,8 @@
     "@angular/router": "~10.0.5",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "bootstrap": "^4.5.0",
+    "fast-json-patch": "^3.0.0-1",
+    "jquery": "^3.5.1",
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^13.0.0",
     "rxjs": "~6.5.5",

@@ -36,6 +36,3 @@ export class AthleteDetailComponent implements OnInit {
   }
 
 }
-
-
-//TODO POPRAVI ID NULL

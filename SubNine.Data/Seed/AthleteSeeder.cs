@@ -19,6 +19,7 @@ namespace SubNine.Data.Seed
                     ClubId = 1,
                     CountryId = 1
                 },
+                
                 new Athlete
                 {
                     Id = 2,
