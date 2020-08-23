@@ -32,6 +32,10 @@
         (pageChange)="vm.page = $event; loadAthletes()"
         id="history">
     </pagination-controls>
+
+    <div class="text-center">
+        <a class="btn btn-primary mb-5" [routerLink]="['new']" title="Dodaje novi prosvjed">Dodaj novi</a>
+    </div>
 </div>
 
 

@@ -1,10 +1,10 @@
-<div class="container" *ngIf="athlete">
-    <div class="col-sm-8 mx-auto">
-        <h1>{{ athlete.id }}</h1>
-        <div>Ime i prezime: {{ athlete.fullName }}.</div>
-        <div>Dob: {{ athlete.yearsOld }}.</div>
-        <div>Klub: {{ athlete.club.name }}</div>
-        <div>Država: {{ athlete.country.name }}</div>
-        <div>Dobar dan</div>
-    </div>
+<div *ngIf="athlete">
+    <a [routerLink]="'/athletes/' + athlete.id + '/edit'" class="btn btn-primary" routerLinkActive="active">
+        Edit
+    </a>
+    <h1>{{ athlete.fullName }}</h1>
+    <p>Dob: {{ athlete.yearsOld }}</p>
+    <p>Klub: {{ athlete.club.name }}</p>
+    <p>Država: {{ athlete.country.name }}</p>
+    <img class="img-fluid" src="https://picsum.photos/200/300" />
 </div>
