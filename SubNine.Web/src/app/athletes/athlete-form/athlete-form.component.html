@@ -1,0 +1,48 @@
+<div class="col-sm-6 mx-auto">
+  <form (ngSubmit)="onSubmit()">
+    <input type="hidden" name="id" [(ngModel)]="athlete.id">
+
+    <!-- fullName -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        name="fullName"
+        [(ngModel)]="athlete.fullName"
+        class="form-control"
+        id="fullName"
+        placeholder="Unesite ime i prezime">
+    </div>
+
+    <!-- description 
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        name="description"
+        [(ngModel)]="athlete.description"
+        id="description"
+        rows="10">Poziv na sudjelovanje ...</textarea>
+    </div> -->
+
+
+    <div class="form-row">
+
+      <!-- club 
+      <div class="col-md-6">
+        <div class="col-auto my-2">
+          <label for="club">Club</label>
+          <select
+            class="custom-select mr-sm-2"
+            name="organizer"
+            [(ngModel)]="athlete.cityId"
+            id="city">
+              <option *ngFor="let c of cities" [value]="c.id">{{ c.cityName }}</option>
+          </select>
+        </div>
+      </div> -->
+
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>

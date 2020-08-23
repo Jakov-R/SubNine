@@ -1,8 +1,10 @@
 <div class="container" *ngIf="athlete">
     <div class="col-sm-8 mx-auto">
         <h1>{{ athlete.id }}</h1>
-        <div>{{ athlete.fullName }}</div>
+        <div>Ime i prezime: {{ athlete.fullName }}.</div>
+        <div>Dob: {{ athlete.yearsOld }}.</div>
+        <div>Klub: {{ athlete.club.name }}</div>
+        <div>Država: {{ athlete.country.name }}</div>
+        <div>Dobar dan</div>
     </div>
-    <button (click)="onDelete(athlete.id)">Obriši</button>
-    neki info: <input (keyup.enter)="onEnter(athlete.id)" type="text" name="" id="" />
 </div>

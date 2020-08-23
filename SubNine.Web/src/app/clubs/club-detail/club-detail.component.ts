@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Club } from '../club';
 import { ClubService } from '../club.service';
+import { Club } from '../club';
 
 @Component({
   selector: 'app-club-detail',
@@ -15,21 +15,20 @@ export class ClubDetailComponent implements OnInit {
     private clubService: ClubService
   ) { }
 
-  id: number;
-  club: Club;
+  id!: number;
+  club!: Club;
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-        this.id = +params.get('id');
-        this.loadClub(this.id);
+      this.id = Number(params.get('id'));
+      this.loadClub();
     });
   }
 
-  loadClub(id): void {
-    this.clubService
-      .getClub(id)
-      .subscribe(p => {
-        this.club = p;
-      });
+  loadClub() {
+    this.clubService.getClub(this.id).subscribe(result => {
+      this.club = result;
+    });
   }
+
 }

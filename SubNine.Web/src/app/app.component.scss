@@ -1,4 +1,18 @@
-body {
-    margin: 0;
-    padding: 1rem;
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: red;
+}
+
+#loading {
+    position: absolute;
+    bottom: 1rem;
+    left: -2rem;
+    width: 10rem;
+}
+
+.hidden {
+    display: none;
 }

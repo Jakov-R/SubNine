@@ -22,6 +22,7 @@ namespace SubNine.Api.Extensions
 
             //services
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAthleteService, AthleteService>();
         }
     }
 }

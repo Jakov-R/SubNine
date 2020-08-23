@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClubService } from '../club.service';
+
 import { Club } from '../club';
 
 @Component({
@@ -11,27 +12,14 @@ export class ClubListComponent implements OnInit {
 
   clubs: Club[] = [];
 
-  searchText: string;
-
   constructor(
     private clubService: ClubService
   ) { }
 
   ngOnInit(): void {
-    this.loadClubs();
-  }
-
-  search(text): void {
-    // this.loadClubs({ search: text });
-  }
-
-  loadClubs(params = {}): void {
-    this.clubService
-      .getClubs(params)
-      .subscribe(c => {
-        this.clubs = c;
-      });
-      //callback
+    this.clubService.getClubs({}).subscribe(result => {
+      this.clubs = result;
+    });
   }
 
 }

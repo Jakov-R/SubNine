@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AthleteListResponse } from './athlete-list.response';
 import { AthleteService } from '../athlete.service';
-import { Athlete } from '../athlete';
-
 
 @Component({
   selector: 'app-athlete-list',
@@ -9,10 +8,8 @@ import { Athlete } from '../athlete';
   styleUrls: ['./athlete-list.component.scss']
 })
 export class AthleteListComponent implements OnInit {
-
-  athletes: Athlete[] = [];
-
-  searchText: string;
+  vm: AthleteListResponse = { page: 1 } as AthleteListResponse;
+  searchText?: string;
 
   constructor(
     private athleteService: AthleteService
@@ -22,17 +19,15 @@ export class AthleteListComponent implements OnInit {
     this.loadAthletes();
   }
 
-  search(text): void {
-    this.loadAthletes({ search: text });
-  }
-
-  loadAthletes(params = {}): void {
+  loadAthletes() {
+    let params: any = { page: this.vm?.page || 1};
+    if(this.searchText){ params.search = this.searchText; }
+    
     this.athleteService
       .getAthletes(params)
-      .subscribe((p: any) => {
-        this.athletes = p;
+      .subscribe(response => {
+        this.vm = response;
       });
-      //callback
   }
 
 }

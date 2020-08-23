@@ -1,5 +1,5 @@
 using AutoMapper;
-using SubNine.Api.Requests;
+using SubNine.Api.Requests.Auth;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 

@@ -1,5 +1,6 @@
 using System;
 using AutoMapper;
+using SubNine.Api.Requests.Athletes;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
 
@@ -32,6 +33,8 @@ namespace SubNine.Data.Profiles
                 dest => dest.DateOfBirth,
                 opt => opt.MapFrom(src => new DateTime(src.Year, src.Month, src.Day))
             );
+
+            //CreateMap<Athlete, AthleteDetailMore>().ReverseMap();
         }
     }
 }

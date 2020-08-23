@@ -1,4 +1,4 @@
-namespace SubNine.Api.Requests
+namespace SubNine.Api.Requests.Auth
 {
     public class RegistrationRequest
     {

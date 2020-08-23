@@ -1,6 +1,6 @@
+import { Club } from '../club';
 
-export interface ClubListRequest<T> {
-    current_page: number;
-    data: Array<T>;
-    last_page: number;
+export interface ClubListRequest {
+    success: boolean;
+    response: Club[];
 }

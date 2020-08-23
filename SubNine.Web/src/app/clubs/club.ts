@@ -1,6 +1,5 @@
 export interface Club {
     id: number;
-    name: string;
-    city: any,
+    name: string,
     athletes: any;
 }

@@ -1,6 +1,6 @@
+import { Athlete } from '../athlete';
 
-export interface AthleteListRequest<T> {
-    current_page: number;
-    data: Array<T>;
-    last_page: number;
+export interface AthleteListRequest {
+    success: boolean;
+    response: Athlete[];
 }

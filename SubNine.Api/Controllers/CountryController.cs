@@ -34,10 +34,10 @@ namespace SubNine.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CountryDetail> GetCountry(long id)
+        public ActionResult<CountryDetailMore> GetCountry(long id)
         {
             var country = this.subNineRepository.GetOne(id);
-            var countryDto = this.mapper.Map<CountryDetail>(country);
+            var countryDto = this.mapper.Map<CountryDetailMore>(country);
 
             return Ok(countryDto);
         }

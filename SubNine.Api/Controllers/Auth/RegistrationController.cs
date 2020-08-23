@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SubNine.Api.Helpers;
-using SubNine.Api.Requests;
+using SubNine.Api.Requests.Auth;
 using SubNine.Api.Responses;
 using SubNine.Api.Services;
 using SubNine.Data.Entities;

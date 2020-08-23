@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AthleteService } from '../athlete.service';
 import { Athlete } from '../athlete';
+import { AthleteService } from '../athlete.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-athlete-detail',
@@ -15,27 +15,27 @@ export class AthleteDetailComponent implements OnInit {
     private athleteService: AthleteService
   ) { }
 
-  id: number;
-  athlete: Athlete;
+  id!: number;
+  athlete!: Athlete;
+
+
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-        this.id = +params.get('id');
-        this.loadAthlete(this.id);
+        this.id = Number(params.get('id'));
+        this.loadAthlete();
     });
   }
 
-  loadAthlete(id): void {
+  loadAthlete() {
     this.athleteService
-      .getAthlete(id)
-      .subscribe(a => this.athlete = a);
+    .getAthlete(this.id)
+    .subscribe(result => {
+      this.athlete = result;
+    });
   }
 
-  onDelete(id) {
-    this.athleteService.deleteAthlete(id).subscribe(_ => null);
-  }
-
-  onEnter(id) {
-    alert("Brisem s idem " + id);
-  }
 }
+
+
+//TODO POPRAVI ID NULL

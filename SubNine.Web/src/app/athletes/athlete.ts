@@ -1,4 +1,7 @@
 export interface Athlete {
     id: number;
-    fullName: string
+    fullName: string,
+    yearsOld: number,
+    club: any,
+    country: any
 }

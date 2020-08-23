@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using SubNine.Api.Helpers;
+using SubNine.Api.Requests.Athletes;
+using SubNine.Api.Responses.Athletes;
+using SubNine.Api.Services;
 using SubNine.Core.Repositories;
 using SubNine.Data.Entities;
 using SubNine.Data.Models;
@@ -13,24 +17,27 @@ namespace SubNine.Api.Controllers
     public class AthleteController : BaseController
     {
         private readonly IAthleteRepository subNineRepository;
+        private readonly IAthleteService athleteService;
         private readonly IMapper mapper;
 
         public AthleteController(
             IAthleteRepository subNineRepository,
+            IAthleteService athleteService,
             IMapper mapper
         )
         {
             this.subNineRepository = subNineRepository;
+            this.athleteService = athleteService;
             this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AthleteDetailMore>> GetAthletes([FromQuery] string search)
+        public ActionResult<AthletePaginatedResponse> GetAthletes([FromQuery] PaginatedAthleteRequest request)
         {
-            var athlete = this.subNineRepository.GetAll(search);
-            var athleteDTO = this.mapper.Map<IEnumerable<AthleteDetailMore>>(athlete);
+            var athlete = this.athleteService.GetPaginatedResponse(request);
+            //var athleteDTO = this.mapper.Map<IEnumerable<AthleteDetailMore>>(athlete);
 
-            return Ok(athleteDTO);
+            return Ok(athlete);
         }
 
         [HttpGet("{id}")]
@@ -42,6 +49,7 @@ namespace SubNine.Api.Controllers
             return Ok(athleteDto);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult<AthleteDetail> CreateAthlete(AthleteCreate athleteDTO)
         {
